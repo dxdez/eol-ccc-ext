@@ -7,17 +7,22 @@ const App = () => {
 
 	const handleButtonClick = (value) => {
 		if(result !== '' && input === '') {
+			setInput(result);
 			setResult('');
 		}
-		setInput((prevInput) => prevInput + value);
+		setInput((prevInput) => {
+			return prevInput + value;
+		});
 		setResult('');
 	};
 
 	const handleCalculate = () => {
 		try {
-			const calculatedResult = eval(input);
-			setResult(calculatedResult.toString());
-			setInput('');
+			if(input !== '') {
+				const calculatedResult = eval(input);
+				setResult(calculatedResult.toString());
+				setInput('');
+			}
 		} catch (error) {
 			setResult('Error');
 		}
