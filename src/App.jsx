@@ -12,7 +12,8 @@ const App = () => {
 		}
 		setInput((prevInput) => {
 			const prArr = prevInput.split('');
-			if(prArr[prArr.length-1] === value) {
+			const operators = ['+','-','*','/'];
+			if(prArr[prArr.length-1] === value && operators.includes(value)) {
 				return prevInput;
 			} else {
 				return prevInput + value;
