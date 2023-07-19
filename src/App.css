@@ -52,7 +52,7 @@ body {
   justify-content: center;
   width: 320px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px;
   border: 2px solid #ccc;
   border-radius: 8px;
   background-color: #f5f5f5;
@@ -63,8 +63,8 @@ body {
   align-items: center;
   justify-content: flex-end;
   width: 310px;
-  height: 60px;
-  margin-bottom: 20px;
+  height: 80px;
+  margin-bottom: 28px;
   padding-right: 10px;
   font-size: 24px;
   font-weight: bold;
