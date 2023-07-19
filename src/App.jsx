@@ -11,7 +11,12 @@ const App = () => {
 			setResult('');
 		}
 		setInput((prevInput) => {
-			return prevInput + value;
+			const prArr = prevInput.split('');
+			if(prArr[prArr.length-1] === value) {
+				return prevInput;
+			} else {
+				return prevInput + value;
+			}
 		});
 		setResult('');
 	};
@@ -52,7 +57,7 @@ const App = () => {
 				<button onClick={() => handleButtonClick('0')}>0</button>
 				<button onClick={() => handleCalculate()}>=</button>
 				<button onClick={() => handleButtonClick('/')}>/</button>
-				<button onClick={() => handleClear()}>Clear</button>
+				<button onClick={() => handleClear()}>CE</button>
 			</div>
 		</div>
 	);
