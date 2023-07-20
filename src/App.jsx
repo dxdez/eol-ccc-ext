@@ -1,19 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 const App = () => {
 	const [result, setResult] = useState('');
 	const [input, setInput] = useState('');
+	const [operators, setOperators] = useState(['.','+','-','*','/']);
 
 	const handleButtonClick = (value) => {
-		if(result !== '' && input === '') {
+		if (result !== '' && input === '') {
 			setInput(result);
 			setResult('');
 		}
 		setInput((prevInput) => {
 			const prArr = prevInput.split('');
-			const operators = ['+','-','*','/'];
-			if(prArr[prArr.length-1] === value && operators.includes(value)) {
+			if (operators.includes(prArr[prArr.length-1]) && operators.includes(value)) {
 				return prevInput;
 			} else {
 				return prevInput + value;
@@ -24,7 +24,7 @@ const App = () => {
 
 	const handleCalculate = () => {
 		try {
-			if(input !== '') {
+			if (input !== '') {
 				const calculatedResult = eval(input);
 				setResult(calculatedResult.toString());
 				setInput('');
@@ -39,26 +39,44 @@ const App = () => {
 		setInput('');
 	};
 
+	const handleKeyboardInput = (event) => {
+		const { key } = event;
+		if (!isNaN(key) || operators.includes(key) || key == 'Enter' || key == 'Escape') {
+			const button = document.querySelector(`button[data-key="${key}"]`);
+			if(button) {
+				button.click();
+			}
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('keydown', handleKeyboardInput);
+
+		return () => {
+			window.removeEventListener('keydown', handleKeyboardInput);
+		};
+	}, []); 
+
 	return (
 		<div className="calculator">
-			<div className="result">{result !== '' ? result : input}</div>
+			<div className="result">{result !== '' ? result : (input !== '' ? input : '0')}</div>
 			<div className="keypad">
-				<button onClick={() => handleButtonClick('7')}>7</button>
-				<button onClick={() => handleButtonClick('8')}>8</button>
-				<button onClick={() => handleButtonClick('9')}>9</button>
-				<button onClick={() => handleButtonClick('+')}>+</button>
-				<button onClick={() => handleButtonClick('4')}>4</button>
-				<button onClick={() => handleButtonClick('5')}>5</button>
-				<button onClick={() => handleButtonClick('6')}>6</button>
-				<button onClick={() => handleButtonClick('-')}>-</button>
-				<button onClick={() => handleButtonClick('1')}>1</button>
-				<button onClick={() => handleButtonClick('2')}>2</button>
-				<button onClick={() => handleButtonClick('3')}>3</button>
-				<button onClick={() => handleButtonClick('*')}>*</button>
-				<button onClick={() => handleButtonClick('0')}>0</button>
-				<button onClick={() => handleCalculate()}>=</button>
-				<button onClick={() => handleButtonClick('/')}>/</button>
-				<button onClick={() => handleClear()}>CE</button>
+				<button onClick={() => handleButtonClick('7')} data-key="7">7</button>
+				<button onClick={() => handleButtonClick('8')} data-key="8">8</button>
+				<button onClick={() => handleButtonClick('9')} data-key="9">9</button>
+				<button onClick={() => handleButtonClick('+')} data-key="+">+</button>
+				<button onClick={() => handleButtonClick('4')} data-key="4">4</button>
+				<button onClick={() => handleButtonClick('5')} data-key="5">5</button>
+				<button onClick={() => handleButtonClick('6')} data-key="6">6</button>
+				<button onClick={() => handleButtonClick('-')} data-key="-">-</button>
+				<button onClick={() => handleButtonClick('1')} data-key="1">1</button>
+				<button onClick={() => handleButtonClick('2')} data-key="2">2</button>
+				<button onClick={() => handleButtonClick('3')} data-key="3">3</button>
+				<button onClick={() => handleButtonClick('*')} data-key="*">*</button>
+				<button onClick={() => handleButtonClick('0')} data-key="0">0</button>
+				<button onClick={() => handleCalculate()} data-key="Enter">=</button>
+				<button onClick={() => handleButtonClick('/')} data-key="/">/</button>
+				<button onClick={() => handleClear()} data-key="Escape">CE</button>
 			</div>
 		</div>
 	);
