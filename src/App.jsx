@@ -13,7 +13,7 @@ const App = () => {
 		setInput((prevInput) => {
 			const prArr = prevInput.split('');
 			const operators = ['+','-','*','/'];
-			if(prArr[prArr.length-1] === value && operators.includes(value)) {
+			if(operators.includes(prArr[prArr.length-1]) && operators.includes(value)) {
 				return prevInput;
 			} else {
 				return prevInput + value;
@@ -41,7 +41,7 @@ const App = () => {
 
 	return (
 		<div className="calculator">
-			<div className="result">{result !== '' ? result : input}</div>
+			<div className="result">{result !== '' ? result : (input !== '' ? input : '0')}</div>
 			<div className="keypad">
 				<button onClick={() => handleButtonClick('7')}>7</button>
 				<button onClick={() => handleButtonClick('8')}>8</button>
