@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Sample Local Ext",
+  "name": "Classic Calculator",
   "version": "1.0.1",
   "action": {
 	"default_popup": "index.html"
