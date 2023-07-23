@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { evaluate } from 'mathjs';
 import './App.css'
 
 const App = () => {
@@ -27,11 +28,12 @@ const App = () => {
 	const handleCalculate = () => {
 		try {
 			if (input !== '') {
-				const calculatedResult = eval(input);
+				const calculatedResult = evaluate(input);
 				setResult(calculatedResult.toString());
 				setInput('');
 			}
 		} catch (error) {
+			console.log(error);
 			setResult('Error');
 		}
 	};
