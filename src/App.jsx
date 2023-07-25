@@ -45,7 +45,8 @@ const App = () => {
 
 	const handleKeyboardInput = (event) => {
 		const { key } = event;
-		if (!isNaN(key) || operators.includes(key) || key == 'Enter' || key == 'Escape') {
+		console.log(key);
+		if (!isNaN(key) || operators.includes(key) || key == '=' || key == 'x') {
 			const button = document.querySelector(`button[data-key="${key}"]`);
 			if(button) {
 				button.click();
@@ -66,7 +67,7 @@ const App = () => {
 			<div className="result">{result !== '' ? result : (input !== '' ? input : '')}</div>
 			<div className="keypad">
 				<button onClick={() => handleButtonClick('')} data-key="">&#8730;</button>
-				<button onClick={() => handleButtonClick('')} data-key="">&#960;</button>
+				<button onClick={() => handleButtonClick('')} data-key="">y<sup>x</sup></button>
 				<button onClick={() => handleButtonClick('')} data-key="">%</button>
 				<button onClick={() => handleButtonClick('+')} data-key="+">+</button>
 				<button onClick={() => handleButtonClick('7')} data-key="7">7</button>
@@ -82,9 +83,9 @@ const App = () => {
 				<button onClick={() => handleButtonClick('3')} data-key="3">3</button>
 				<button onClick={() => handleButtonClick('/')} data-key="/">/</button>
 				<button onClick={() => handleButtonClick('0')} data-key="0">0</button>
-				<button onClick={() => handleCalculate()} data-key="Enter">=</button>
+				<button onClick={() => handleCalculate()} data-key="=">=</button>
 				<button onClick={() => handleButtonClick('.')} data-key=".">.</button>
-				<button onClick={() => handleClear()} data-key="Escape">CE</button>
+				<button onClick={() => handleClear()} data-key="x">CE</button>
 			</div>
 		</div>
 	);
