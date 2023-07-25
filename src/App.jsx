@@ -33,7 +33,6 @@ const App = () => {
 				setInput('');
 			}
 		} catch (error) {
-			console.log(error);
 			setResult('Error');
 		}
 	};
@@ -44,8 +43,8 @@ const App = () => {
 	};
 
 	const handleKeyboardInput = (event) => {
+						
 		const { key } = event;
-		console.log(key);
 		if (!isNaN(key) || operators.includes(key) || key == '=' || key == 'x') {
 			const button = document.querySelector(`button[data-key="${key}"]`);
 			if(button) {
@@ -66,7 +65,7 @@ const App = () => {
 		<div className="calculator">
 			<div className="result">{result !== '' ? result : (input !== '' ? input : '')}</div>
 			<div className="keypad">
-				<button onClick={() => handleButtonClick('')} data-key="">&#8730;</button>
+				<button onClick={() => handleButtonClick('')} data-key=""><sup>+</sup>/<sub>-</sub></button>
 				<button onClick={() => handleButtonClick('')} data-key="">y<sup>x</sup></button>
 				<button onClick={() => handleButtonClick('')} data-key="">%</button>
 				<button onClick={() => handleButtonClick('+')} data-key="+">+</button>
