@@ -5,7 +5,7 @@ import './App.css'
 const App = () => {
 	const [result, setResult] = useState('');
 	const [input, setInput] = useState('');
-	const [operators, setOperators] = useState(['.','+','-','*','/']);
+	const [operators, setOperators] = useState(['.','+','-','*','/','=','x','n']);
 
 	const handleButtonClick = (value) => {
 		if(value !== '') {
@@ -14,11 +14,16 @@ const App = () => {
 				setResult('');
 			}
 			setInput((prevInput) => {
-				const prArr = prevInput.split('');
-				if (operators.includes(prArr[prArr.length-1]) && operators.includes(value)) {
-					return prevInput;
+				if(prevInput != null && prevInput != undefined) {
+					let convertedInput = prevInput.toString();
+					const prArr = convertedInput.split('');
+					if (operators.includes(prArr[prArr.length-1]) && operators.includes(value)) {
+						return prevInput;
+					} else {
+						return prevInput + value;
+					}
 				} else {
-					return prevInput + value;
+					return input + value;
 				}
 			});
 			setResult('');
@@ -37,15 +42,30 @@ const App = () => {
 		}
 	};
 
+	const handleNegative = () => {
+		if(result !== '') {
+			setResult(0 - result);
+		} else {
+			try {
+				if (input !== '') {
+					const calculatedResult = evaluate(input);
+					setResult((0 - calculatedResult).toString());
+					setInput('');
+				}
+			} catch (error) {
+				setResult('Error');
+			}
+		}
+	}
+
 	const handleClear = () => {
 		setResult('');
 		setInput('');
 	};
 
 	const handleKeyboardInput = (event) => {
-						
 		const { key } = event;
-		if (!isNaN(key) || operators.includes(key) || key == '=' || key == 'x') {
+		if (!isNaN(key) || operators.includes(key)) {
 			const button = document.querySelector(`button[data-key="${key}"]`);
 			if(button) {
 				button.click();
@@ -55,7 +75,6 @@ const App = () => {
 
 	useEffect(() => {
 		window.addEventListener('keydown', handleKeyboardInput);
-
 		return () => {
 			window.removeEventListener('keydown', handleKeyboardInput);
 		};
@@ -65,7 +84,7 @@ const App = () => {
 		<div className="calculator">
 			<div className="result">{result !== '' ? result : (input !== '' ? input : '')}</div>
 			<div className="keypad">
-				<button onClick={() => handleButtonClick('')} data-key=""><sup>+</sup>/<sub>-</sub></button>
+				<button onClick={() => handleNegative()} data-key="n"><sup>+</sup>/<sub>-</sub></button>
 				<button onClick={() => handleButtonClick('')} data-key="">y<sup>x</sup></button>
 				<button onClick={() => handleButtonClick('')} data-key="">%</button>
 				<button onClick={() => handleButtonClick('+')} data-key="+">+</button>
