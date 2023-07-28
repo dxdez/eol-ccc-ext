@@ -5,12 +5,15 @@ import './App.css'
 const App = () => {
 	const [result, setResult] = useState('');
 	const [input, setInput] = useState('');
-	const [operators, setOperators] = useState(['.','+','-','*','/','=','x','n','e']);
+	const [operators, setOperators] = useState(['.','+','-','*','/','=','x','n','e','p','%','^']);
 
 	const handleButtonClick = (value) => {
 		if(value !== '') {
 			if(value === 'e') {
 				value = '^';
+			} 
+			if(value === 'p') {
+				value = '%';
 			}
 			if (result !== '' && input === '') {
 				setInput(result);
@@ -90,7 +93,7 @@ const App = () => {
 			<div className="keypad">
 				<button onClick={() => handleNegative()} data-key="n"><sup>+</sup>/<sub>-</sub></button>
 				<button onClick={() => handleButtonClick('e')} data-key="e">y<sup>x</sup></button>
-				<button onClick={() => handleButtonClick('')} data-key="">%</button>
+				<button onClick={() => handleButtonClick('p')} data-key="p">%</button>
 				<button onClick={() => handleButtonClick('+')} data-key="+">+</button>
 				<button onClick={() => handleButtonClick('7')} data-key="7">7</button>
 				<button onClick={() => handleButtonClick('8')} data-key="8">8</button>
