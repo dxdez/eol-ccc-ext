@@ -35,10 +35,14 @@ Keyboard Input: Users can use the keyboard for input and calculations. The follo
 ## Setup and Build
 
 This project uses the Vite configuration, you can set up Vite by navigate to the project folder in the terminal. Then, initialize the project and install the required dependencies using npm:<br/>
-`npm install --save-dev`
+```
+npm install --save-dev
+```
 
 Now, you can run the following command to build the extension:<br/>
-`npm run build-extension`
+```
+npm run build-extension
+```
 
 This will generate a `dist` folder containing the built files along with the manifest.json and icons folder. You can use this folder to load your chrome extension, to do so follow the steps below:
 - Open Google Chrome and go to the Extensions page by entering `chrome://extensions/` in the address bar.
