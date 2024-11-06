@@ -1,5 +1,7 @@
 # Classic Calculator Chrome Extension
 
+> **Note: This project is no longer actively maintained. It has been archived for historical purposes. Feel free to explore the code, but please note that it is no longer in use or supported.**
+
 The Classic Calculator Chrome Extension is a simple calculator built using React that allows users to perform basic arithmetic calculations. It supports addition, subtraction, multiplication, division, exponentiation, percentage calculations, and more. The calculator can be used both by clicking on the buttons provided and by using the keyboard for input.
 
 ## Functions
